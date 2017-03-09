@@ -1,0 +1,17 @@
+[
+	{"time_zone":"Canada","_c1":"Wed Nov 2","total_count":9595},
+	{"time_zone":"Australia","_c1":"Wed Nov 2","total_count":5965},
+	{"time_zone":"France","_c1":"Wed Nov 2","total_count":4080},
+	{"time_zone":"Brasilia","_c1":"Wed Nov 2","total_count":3034},
+	{"time_zone":"Netherlands","_c1":"Wed Nov 2","total_count":2117},
+	{"time_zone":"united kingdom","_c1":"Wed Nov 2","total_count":2013},
+	{"time_zone":"Mexico","_c1":"Wed Nov 2","total_count":1975},
+	{"time_zone":"Greece","_c1":"Wed Nov 2","total_count":1502},
+	{"time_zone":"Quito","_c1":"Wed Nov 2","total_count":1310},
+	{"time_zone":"Spain","_c1":"Wed Nov 2","total_count":1301},
+	{"time_zone":"Denmark","_c1":"Thu Nov 2","total_count":1201},
+	{"time_zone":"Belgium","_c1":"Wed Nov 2","total_count":954},
+	{"time_zone":"Hawaii-Aleutian Daylight Time","_c1":"Wed Nov 2","total_count":903},
+	{"time_zone":"Argentina","_c1":"Wed Nov 2","total_count":894},
+	{"time_zone":"Mountain Time (US & Canada)","_c1":"Wed Nov 2","total_count":871}
+]

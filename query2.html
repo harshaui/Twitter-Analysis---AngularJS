@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Tweet Analayzer</title>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+    <script src="ajaxGetPost.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script>
+        function charts(data,ChartType)
+        {
+            var c=ChartType;
+            var jsonData=data;
+            google.load("visualization", "1", {packages:["corechart"], callback: drawVisualization});
+            function drawVisualization()
+            {
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Device');
+                data.addColumn('number', 'Device Density');
+                $.each(jsonData, function(i,jsonData)
+                {
+                    var value=jsonData.cnt;
+                    var name=jsonData.device;
+                    data.addRows([ [name, value]]);
+                });
+
+                var options = {
+                    title : "Popular Devices",
+                    colorAxis: {colors: ['#54C492', '#cc0000']},
+                    datalessRegionColor: '#dedede',
+                    defaultColor: '#dedede'
+                };
+
+                var chart;
+                if(c=="ColumnChart")
+                    chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+                else if(c=="PieChart")
+                    chart = new google.visualization.PieChart(document.getElementById('piechart_div'));
+                else if(c=="BarChart")
+                    chart = new google.visualization.BarChart(document.getElementById('bar_div'));
+                else if(c=="GeoChart")
+                    chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+                chart.draw(data, options);
+            }
+        }
+
+        $(document).ready(function ()
+        {
+            url='devices.json';
+            ajax_data('GET',url, function(data)
+            {
+                charts(data,"ColumnChart");
+                charts(data,"PieChart");
+                charts(data,"BarChart");
+                charts(data,"GeoChart");
+            });
+        });
+    </script>
+    <style>
+        body{font-family:arial}
+    </style>
+</head>
+<body style="text-align:center">
+<div id="bar_div" style="width: 900px; height: 500px;"></div>
+<div id="piechart_div" style="width: 900px; height: 500px;"></div>
+
+<p style="background-color:white;font-size:15px"> <b>DESCRIPTION: This bar graph and pie chart shows the most used devices for tweeting by the twitter users. This will help us predict the device preferences of twitter users  </b> <br> 
+    <b>QUERY 2:</b> val r5 = sqlContext.sql("SELECT device , count(*) as cnt FROM tweet_table WHERE user.verified OR NOT user.verified GROUP BY device HAVING device != '' ORDER BY cnt DESC") <br>
+r5.coalesce(1).write.json("devices")   </p>
+
+</body>
+</html>
